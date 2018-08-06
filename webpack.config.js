@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/7/20.
  */
-var path = require('path')
-var webpack = require('webpack')
+var path = require('path');
+var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
@@ -13,7 +13,7 @@ module.exports = {
   },
   /* 引入文件时，可省略后缀名 */
   resolve: {
-    extensions: ['', '.js', 'jsx']
+    extensions: ['', '.js', '.jsx']
   },
 
   module: {
