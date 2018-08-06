@@ -1,11 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { hashHistory } from 'react-router'
-import RouteMap from './router/routeMap.jsx'
+import { Provider } from  'react-redux'
+import store from './store'
+import Hello from './containers/Hello'
 
 import './static/css/commen.less';
 
 render (
-  <RouteMap history={hashHistory}/>,
+  <Provider store={store()}>
+    <Hello />
+  </Provider>,
   document.getElementById('root')
 );
