@@ -39,7 +39,7 @@ module.exports = {
 
     //打开浏览器
     new OpenBrowserPlugin({
-      url: 'http://localhost:3000'
+      url: 'http://localhost:8000'
     }),
     
     // 可在业务 js 代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示）
@@ -48,10 +48,16 @@ module.exports = {
     })
   ],
   devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8181',
+        secure: false
+      }
+    },
     colors: true, //终端中输出结果为彩色
     historyApiFallback: true, //不跳转，在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
     inline: true, //实时刷新
-    port: 3000,
+    port: 8000,
     hot: true  // 使用热加载插件 HotModuleReplacementPlugin
   }
 }

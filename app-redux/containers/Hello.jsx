@@ -27,7 +27,6 @@ class Hello extends React.Component{
   }
 };
 function mapStateToProps(state) {
-  console.log(state);
   return {
     userInfo: state.userInfo
   }

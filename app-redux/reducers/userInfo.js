@@ -14,5 +14,4 @@ export default function userInfo(state = {}, action) {
     default:
       return state;
   }
-  return state;
 };
