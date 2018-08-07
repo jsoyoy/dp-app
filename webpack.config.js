@@ -13,7 +13,12 @@ module.exports = {
   },
   /* 引入文件时，可省略后缀名 */
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias: {
+      '@fetch': path.resolve(__dirname, 'app/fetch/'),
+      '@components': path.resolve(__dirname, 'app/components/'),
+      '@page': path.resolve(__dirname, 'app/page/')
+    }
   },
 
   module: {
