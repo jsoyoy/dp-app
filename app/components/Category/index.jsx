@@ -13,7 +13,7 @@ class Category extends React.Component {
   }
   render () {
     const swipeOpt = {
-      auto: 2000,
+      // auto: false,
       callback: function (index) {
         this.setState({index: index})
       }.bind(this)
