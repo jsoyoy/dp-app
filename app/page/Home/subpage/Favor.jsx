@@ -33,43 +33,37 @@ class Favor extends React.Component {
   }
   componentDidMount () {
     this.getFavorList()
-    let timer;
     window.addEventListener('scroll', () =>{
-      if (timer) {
-        clearTimeout(timer)
-      }
-      // timer = setTimeout(() => {
       let wrapper = this.refs.loadMore
       let top = wrapper.getBoundingClientRect().top
       let windowHeight = window.screen.height
-      console.log(timer, top, windowHeight);
-      if (top && top < windowHeight) {
+      if (top && top < windowHeight && !this.state.isLoading) {
         this.loadMore()
       }
-      // }, 500)
     })
   }
   /*加载更多*/
   loadMore () {
     let page = ++this.state.page;
     this.setState({
-      page: page
-    })
-    this.getFavorList()
-  }
-  /*获取列表数据*/
-  getFavorList () {
-    this.setState({
+      page: page,
       isLoading: true
     })
-    console.log(this.state.isLoading);
+    this.getFavorList(() => {
+      this.setState({
+        isLoading: false
+      })
+    });
+  }
+  /*获取列表数据*/
+  getFavorList (cb = null) {
     get(`/api/homelist/${encodeURIComponent(this.props.cityName)}/${this.state.page}`).then(res => {
       res.json().then(list => {
-        setTimeout(()=>{
+        setTimeout(() => {
           this.setState({
-            favoList: this.state.favoList.concat(list.data),
-            isLoading: this.state.page === 0 ? true : false
+            favoList: this.state.favoList.concat(list.data)
           })
+          cb();
         }, 1000)
       })
     })
